@@ -18,6 +18,9 @@ public interface UserProfileMapper {
 	@Select("SELECT * FROM UserProfile WHERE id =#{id}")
 	UserProfile getUserProfile(@PathVariable("id") String id);
 	
+	@Select("SELECT count(*) FROM UserProfile WHERE id =#{id}")
+	int getAvailableId(String id);
+	
 	@Select("SELECT * FROM UserProfile")
 	List<UserProfile> getUserProfileList();
 

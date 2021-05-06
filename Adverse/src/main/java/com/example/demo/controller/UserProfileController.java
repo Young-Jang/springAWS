@@ -55,12 +55,14 @@ public class UserProfileController {
 		return resultlist;
 	}
 
-	@RequestMapping("/availableId")
+	@RequestMapping("/user/availableId")
 	@ResponseBody
-	public Boolean getIsAvailableId(HttpServletRequest request) {
+	public int getIsAvailableId(HttpServletRequest request) {
 		String id = request.getParameter("id");
+		System.out.println(request.getParameter("id"));
 		int cnt = mapper.getAvailableId(id);
-		return true;
+		System.out.println(cnt);
+		return cnt;
 	}
 	
 	@RequestMapping("/user/register")

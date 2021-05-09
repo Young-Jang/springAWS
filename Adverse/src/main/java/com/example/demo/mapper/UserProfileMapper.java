@@ -26,6 +26,9 @@ public interface UserProfileMapper {
 	
 	@Insert("INSERT INTO MEMBER_INFO VALUES(get_seq('MemberSeq'),#{id},#{name},#{password})")
 	int registerUserProfile(String id, String name, String password);
+	
+	@Select("SELECT COUNT(*) FROM MEMBER_INFO WHERE id = #{id} AND password = #{password}")
+	int getUserInfo(String id, String password);
 
 	@Insert("INSERT INTO UserProfile VALUES(#{id},#{name},#{phone},#{address})")
 	int insertUserProfile(@Param("id")String id, @Param("name")String name, @Param("phone")String phone,@Param("address")String address);

@@ -65,9 +65,29 @@ public class UserProfileController {
 		return cnt;
 	}
 	
+	@RequestMapping("/user/login")
+	@ResponseBody
+	public String login(HttpServletRequest request) {
+		String id = request.getParameter("id");
+		System.out.println(request.getParameter("id"));
+		String password = request.getParameter("password");
+		System.out.println(passwordEncoder.encode(password));
+		password = passwordEncoder.encode(password);
+		int cnt = mapper.getUserInfo(id,password);
+		System.out.println(cnt);
+		if(cnt ==1)
+			return "success";
+		else
+		{
+			if(cnt>1)
+				System.out.println("중복 계정 발생");
+			return "not matched";
+		}
+	}
+	
 	@RequestMapping("/user/register")
 	@ResponseBody
-	public int RegisterUserProfile(HttpServletRequest request) {
+	public int registerUserProfile(HttpServletRequest request) {
 		System.out.println(request.getParameter("id"));
 		System.out.println(request.getParameter("name"));
 		System.out.println(request.getParameter("password"));
